@@ -16,15 +16,18 @@ parser.add_argument('--train_rpn', action='store_true', default=False, help='tra
 parser.add_argument('--train_frcnn', action='store_true', default=False, help='train fast rcnn model')
 parser.add_argument('--test', action='store_true', default=False, help='test model')
 parser.add_argument('--checkpoint_dir', type=str, default='checkpoint', help='checkpoint dir')
+parser.add_argument('--result_dir', type=str, default='results', help='checkpoint dir')
 args = parser.parse_args()
 
 args.cuda = not args.no_cuda and torch.cuda.is_available()
 
 print(args)
 
-args.checkpoint_dir = 'checkpoint'
 if not os.path.isdir(args.checkpoint_dir):
     os.mkdir(args.checkpoint_dir)
+
+if not os.path.isdir(args.result_dir):
+    os.mkdir(args.result_dir)
 
 
 def train_rpn():
